@@ -4,10 +4,10 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Acara (
+data class Acara(
 
     @SerialName("id_acara")
-    val idAcara: Int? = null,
+    val idAcara: String,
 
     @SerialName("nama_acara")
     val namaAcara: String,
