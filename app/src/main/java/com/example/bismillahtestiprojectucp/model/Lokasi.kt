@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Lokasi (
+data class Lokasi(
     @SerialName("id_lokasi")
     val idLokasi: String,
 
@@ -13,5 +13,5 @@ data class Lokasi (
 
     @SerialName("alamat_lokasi")
     val alamatLokasi: String,
-    val kapasitas: Long
+    val kapasitas: String
 )
