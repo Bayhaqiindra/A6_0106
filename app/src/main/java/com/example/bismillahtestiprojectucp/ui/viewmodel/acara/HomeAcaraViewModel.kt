@@ -11,15 +11,15 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 
-sealed class AcaraUiState {
-    data class Success(val acara: List<Acara>) : AcaraUiState()
-    object Error : AcaraUiState()
-    object Loading : AcaraUiState()
+sealed class HomeAcaraUiState {
+    data class Success(val acara: List<Acara>) : HomeAcaraUiState()
+    object Error : HomeAcaraUiState()
+    object Loading : HomeAcaraUiState()
 }
 
 class HomeAcaraViewModel(private val acr: AcaraRepository) : ViewModel() {
 
-    var acaraUIState: AcaraUiState by mutableStateOf(AcaraUiState.Loading)
+    var acaraHomeUIState: HomeAcaraUiState by mutableStateOf(HomeAcaraUiState.Loading)
         private set
 
     init {
@@ -28,26 +28,13 @@ class HomeAcaraViewModel(private val acr: AcaraRepository) : ViewModel() {
 
     fun getAcara() {
         viewModelScope.launch {
-            acaraUIState = AcaraUiState.Loading
-            acaraUIState = try {
-                AcaraUiState.Success(acr.getAcara())
+            acaraHomeUIState = HomeAcaraUiState.Loading
+            acaraHomeUIState = try {
+                HomeAcaraUiState.Success(acr.getAcara())
             } catch (e: IOException) {
-                AcaraUiState.Error
+                HomeAcaraUiState.Error
             } catch (e: HttpException) {
-                AcaraUiState.Error
-            }
-        }
-    }
-
-    fun deleteAcara(idAcara: String) {
-        viewModelScope.launch {
-            try {
-                acr.deleteAcara(idAcara)
-                getAcara() // Refresh data setelah penghapusan
-            } catch (e: IOException) {
-                acaraUIState = AcaraUiState.Error
-            } catch (e: HttpException) {
-                acaraUIState = AcaraUiState.Error
+                HomeAcaraUiState.Error
             }
         }
     }
