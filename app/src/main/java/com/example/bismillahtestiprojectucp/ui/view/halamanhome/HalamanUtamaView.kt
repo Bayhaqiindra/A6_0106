@@ -57,9 +57,8 @@ fun HalamanUtamaView(
             .fillMaxSize()
             .background(color = colorResource(
                 id = R.color.primary
-            )) // Warna hijau sebagai background dasar
+            ))
     ) {
-        // Bagian atas dengan lengkungan besar
         Box(
             modifier = Modifier
                 .fillMaxWidth()
