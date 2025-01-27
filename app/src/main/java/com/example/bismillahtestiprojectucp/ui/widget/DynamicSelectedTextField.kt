@@ -38,11 +38,17 @@ fun DynamicSelectedTextField(
             readOnly = true,
             value = selectedValue,
             onValueChange = {},
-            label = { Text(text = label) },
+            label = { Text(text = label, color = Color.White) },
             trailingIcon = {
                 ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
             },
-            colors = OutlinedTextFieldDefaults.colors(),
+            colors = OutlinedTextFieldDefaults.colors(
+                unfocusedTextColor = Color.White,
+                focusedTextColor = Color.White,
+                focusedBorderColor = Color.White,
+                unfocusedBorderColor = Color.White
+            ),
+            shape = RoundedCornerShape(16.dp),
             modifier = Modifier.menuAnchor().fillMaxWidth()
         )
 
