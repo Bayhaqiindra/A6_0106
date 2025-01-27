@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bismillahtestiprojectucp.navigation.DestinasiNavigasi
-import com.example.bismillahtestiprojectucp.ui.customwidget.CostumeTopAppBar
 import com.example.bismillahtestiprojectucp.ui.viewmodel.klien.KlienPenyediaViewModel
 import com.example.bismillahtestiprojectucp.ui.viewmodel.klien.UpdateKlienViewModel
 import kotlinx.coroutines.launch
@@ -40,13 +39,13 @@ fun UpdateKlienView(
 
     Scaffold(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {
-            CostumeTopAppBar(
-                title = DestinasiUpdateKlien.titleRes,
-                canNavigateBack = true,
-                navigateUp = onNavigateUp
-            )
-        }
+//        topBar = {
+//            CostumeTopAppBar(
+//                title = DestinasiUpdateKlien.titleRes,
+//                canNavigateBack = true,
+//                navigateUp = onNavigateUp
+//            )
+//        }
     ) { innerPadding ->
         EntryBodyKlien(
             insertKlienUiState = viewModel.uiklienState,
