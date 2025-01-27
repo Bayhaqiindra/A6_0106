@@ -23,7 +23,6 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bismillahtestiprojectucp.navigation.DestinasiNavigasi
-import com.example.bismillahtestiprojectucp.ui.customwidget.CostumeTopAppBar
 import com.example.bismillahtestiprojectucp.ui.viewmodel.acara.AcaraPenyediaViewModel
 import com.example.bismillahtestiprojectucp.ui.viewmodel.acara.UpdateAcaraViewModel
 import com.example.bismillahtestiprojectucp.ui.viewmodel.klien.HomeKlienViewModel
@@ -54,14 +53,7 @@ fun UpdateAcaraView(
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
     Scaffold(
-        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {
-            CostumeTopAppBar(
-                title = DestinasiUpdateAcara.titleRes,
-                canNavigateBack = true,
-                navigateUp = onNavigateUp
-            )
-        }
+        modifier = modifier,
     ) { innerPadding ->
         EntryBodyAcara(
             insertAcaraUiState = viewModel.uiacaraState,
