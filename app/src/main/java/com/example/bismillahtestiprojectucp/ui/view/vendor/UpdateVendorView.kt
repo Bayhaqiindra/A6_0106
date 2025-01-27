@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bismillahtestiprojectucp.navigation.DestinasiNavigasi
-import com.example.bismillahtestiprojectucp.ui.customwidget.CostumeTopAppBar
 import com.example.bismillahtestiprojectucp.ui.viewmodel.vendor.UpdateVendorViewModel
 import com.example.bismillahtestiprojectucp.ui.viewmodel.vendor.VendorPenyediaViewModel
 import kotlinx.coroutines.launch
@@ -39,13 +38,6 @@ fun UpdateVendorView(
 
     Scaffold(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {
-            CostumeTopAppBar(
-                title = DestinasiUpdateVendor.titleRes,
-                canNavigateBack = true,
-                navigateUp = onNavigateUp
-            )
-        }
     ) { innerPadding ->
         EntryBodyVendor(
             insertVendorUiState = viewModel.uivendorState,
