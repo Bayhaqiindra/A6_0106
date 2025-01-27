@@ -1,28 +1,47 @@
 package com.example.bismillahtestiprojectucp.ui.view.acara
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.bismillahtestiprojectucp.R
 import com.example.bismillahtestiprojectucp.navigation.DestinasiNavigasi
-import com.example.bismillahtestiprojectucp.ui.customwidget.CostumeTopAppBar
 import com.example.bismillahtestiprojectucp.ui.viewmodel.acara.AcaraPenyediaViewModel
 import com.example.bismillahtestiprojectucp.ui.viewmodel.acara.HomeAcaraUiState
 import com.example.bismillahtestiprojectucp.ui.viewmodel.klien.HomeKlienViewModel
@@ -45,44 +64,71 @@ object DestinasiAcaraInsert : DestinasiNavigasi {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InsertAcaraScreen(
-    navigateBack: () -> Unit, // Navigasi kembali ke HomePekerja
+    navigateBack: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: InsertAcaraViewModel = viewModel(factory = AcaraPenyediaViewModel.Factory),
     viewModelLokasi: HomeLokasiViewModel = viewModel(factory = LokasiPenyediaViewModel.Factory),
     viewModelKlien: HomeKlienViewModel = viewModel(factory = KlienPenyediaViewModel.Factory)
 ) {
     val coroutineScope = rememberCoroutineScope()
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     val klienUiState = viewModelKlien.klienUiState
     val lokasiUiState = viewModelLokasi.lokasiUiState
 
-    Scaffold(
-        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {
-            CostumeTopAppBar(
-                title = DestinasiAcaraInsert.titleRes,
-                canNavigateBack = true,
-                scrollBehavior = scrollBehavior,
-            )
-        },
-    ) { innerPadding ->
-        EntryBodyAcara(
-            insertAcaraUiState = viewModel.uiacaraState,
-            onAcaraValueChange = viewModel::updateInsertAcaraState,
-            onSaveClick = {
-                coroutineScope.launch {
-                    viewModel.insertAcara()
-                    navigateBack()
-                }
-            },
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = colorResource(R.color.primary))
+    ) {
+        Row(
             modifier = Modifier
-                .padding(innerPadding)
-                .verticalScroll(rememberScrollState())
                 .fillMaxWidth()
-        )
+                .padding(start = 16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "Masukan Data Acara",
+                fontFamily = FontFamily.Serif,
+                fontWeight = FontWeight.Bold,
+                style = TextStyle(
+                    fontSize = 25.sp
+                ),
+                color = Color.White,
+            )
+            Image(
+                painter = painterResource(id = R.drawable.logo),
+                contentDescription = "Logo",
+                modifier = Modifier.size(110.dp),
+            )
+        }
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .clip(RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp))
+                .background(color = colorResource(R.color.yellow))
+                .offset(y = -10.dp)
+                .padding(top = 8.dp, bottom = 40.dp)
+        ) {
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
+                    .verticalScroll(rememberScrollState())
+            ) {
+                EntryBodyAcara(
+                    insertAcaraUiState = viewModel.uiacaraState,
+                    onAcaraValueChange = viewModel::updateInsertAcaraState,
+                    onSaveClick = {
+                        coroutineScope.launch {
+                            viewModel.insertAcara()
+                            navigateBack()
+                        }
+                    }
+                )
+            }
+        }
     }
 }
-
 @Composable
 fun EntryBodyAcara(
     insertAcaraUiState: InsertAcaraUiState,
@@ -101,17 +147,33 @@ fun EntryBodyAcara(
             viewModelLokasiViewModel = viewModel(),
             viewModelKlienViewModel = viewModel()
         )
-        Button(
-            onClick = onSaveClick,
-            shape = MaterialTheme.shapes.small,
-            modifier = Modifier.fillMaxWidth(),
-            enabled = insertAcaraUiState.insertUiEvent.idKlien.isNotEmpty()
-                    && insertAcaraUiState.insertUiEvent.idLokasi.isNotEmpty()// Validasi form
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.End
         ) {
-            if (insertAcaraUiState.isLoading) {
-                CircularProgressIndicator(modifier = Modifier.size(24.dp)) // Loading indicator
-            } else {
-                Text(text = "Simpan")
+            Button(
+                onClick = onSaveClick,
+                shape = RoundedCornerShape(16.dp), // Membuat tombol lebih kecil dengan sudut membulat
+                modifier = Modifier
+                    .height(40.dp),
+                enabled = insertAcaraUiState.insertUiEvent.idKlien.isNotEmpty()
+                        && insertAcaraUiState.insertUiEvent.idLokasi.isNotEmpty(),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = colorResource(R.color.primary),
+                    contentColor = Color.White,
+                    disabledContainerColor = Color.Gray,
+                    disabledContentColor = Color.LightGray
+                )// Validasi form
+            ) {
+                if (insertAcaraUiState.isLoading) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.size(24.dp),
+                        color = Color.White
+                    ) // Loading indicator
+                } else {
+                    Text(text = "Simpan")
+                }
             }
         }
     }
@@ -151,35 +213,63 @@ fun FormInputAcara(
                 OutlinedTextField(
                     value = insertAcaraUiEvent.namaAcara,
                     onValueChange = { onValueChange(insertAcaraUiEvent.copy(namaAcara = it)) },
-                    label = { Text("Nama Acara") },
+                    label = { Text("Nama Acara", color = Color.White) },
                     modifier = Modifier.fillMaxWidth(),
                     enabled = enabled,
-                    singleLine = true
+                    singleLine = true,
+                    shape = RoundedCornerShape(16.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        unfocusedTextColor = Color.White,
+                        focusedTextColor = Color.White,
+                        focusedBorderColor = Color.White,
+                        unfocusedBorderColor = Color.White
+                    )
                 )
 
                 OutlinedTextField(
                     value = insertAcaraUiEvent.deskripsiAcara,
                     onValueChange = { onValueChange(insertAcaraUiEvent.copy(deskripsiAcara = it)) },
-                    label = { Text("Deskripsi Acara") },
+                    label = { Text("Deskripsi Acara", color = Color.White) },
                     modifier = Modifier.fillMaxWidth(),
                     enabled = enabled,
-                    singleLine = true
+                    singleLine = true,
+                    shape = RoundedCornerShape(16.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        unfocusedTextColor = Color.White,
+                        focusedTextColor = Color.White,
+                        focusedBorderColor = Color.White,
+                        unfocusedBorderColor = Color.White
+                    )
                 )
                 OutlinedTextField(
                     value = insertAcaraUiEvent.tanggalMulai,
                     onValueChange = { onValueChange(insertAcaraUiEvent.copy(tanggalMulai = it)) },
-                    label = { Text("Tanggal Mulai") },
+                    label = { Text("Tanggal Mulai", color = Color.White) },
                     modifier = Modifier.fillMaxWidth(),
                     enabled = enabled,
-                    singleLine = true
+                    singleLine = true,
+                    shape = RoundedCornerShape(16.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        unfocusedTextColor = Color.White,
+                        focusedTextColor = Color.White,
+                        focusedBorderColor = Color.White,
+                        unfocusedBorderColor = Color.White
+                    )
                 )
                 OutlinedTextField(
                     value = insertAcaraUiEvent.tanggalBerakhir,
                     onValueChange = { onValueChange(insertAcaraUiEvent.copy(tanggalBerakhir = it)) },
-                    label = { Text("Tanggal Berakhir") },
+                    label = { Text("Tanggal Berakhir", color = Color.White) },
                     modifier = Modifier.fillMaxWidth(),
                     enabled = enabled,
-                    singleLine = true
+                    singleLine = true,
+                    shape = RoundedCornerShape(16.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        unfocusedTextColor = Color.White,
+                        focusedTextColor = Color.White,
+                        focusedBorderColor = Color.White,
+                        unfocusedBorderColor = Color.White
+                    )
                 )
 
                 DynamicSelectedTextField(
@@ -194,10 +284,17 @@ fun FormInputAcara(
                 OutlinedTextField(
                     value = insertAcaraUiEvent.statusAcara,
                     onValueChange = { onValueChange(insertAcaraUiEvent.copy(statusAcara = it)) },
-                    label = { Text("Status Acara") },
+                    label = { Text("Status Acara",  color = Color.White) },
                     modifier = Modifier.fillMaxWidth(),
                     enabled = enabled,
-                    singleLine = true
+                    singleLine = true,
+                    shape = RoundedCornerShape(16.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        unfocusedTextColor = Color.White,
+                        focusedTextColor = Color.White,
+                        focusedBorderColor = Color.White,
+                        unfocusedBorderColor = Color.White
+                    )
                 )
             }
         }
