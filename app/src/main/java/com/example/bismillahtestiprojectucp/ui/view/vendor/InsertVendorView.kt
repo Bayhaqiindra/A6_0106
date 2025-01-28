@@ -157,7 +157,7 @@ fun EntryBodyVendor(
                         color = Color.White
                     )
                 } else {
-                    Text(text = "Simpan")
+                    Text(text = "Save")
                 }
             }
         }
