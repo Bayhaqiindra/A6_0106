@@ -172,7 +172,7 @@ fun EntryBodyAcara(
                         color = Color.White
                     ) // Loading indicator
                 } else {
-                    Text(text = "Simpan")
+                    Text(text = "Save")
                 }
             }
         }
