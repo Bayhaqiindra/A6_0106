@@ -161,7 +161,7 @@ fun EntryBodyKlien(
                         color = Color.White
                     )
                 } else {
-                    Text(text = "Simpan")
+                    Text(text = "Save")
                 }
             }
         }
