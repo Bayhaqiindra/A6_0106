@@ -6,9 +6,9 @@ TABEL ACARA:
 Halaman Utama
 ![AC](https://github.com/user-attachments/assets/f89dba9b-2cdf-4f4b-b4f4-419072568249)
 
+
 Halaman Insert Acara
-![Screenshot_20250129_100531](https://github.com/user-attachments/assets/4e12c6ba-6543-4418-89d8-7ed400386474)
-![Screenshot_20250129_100551](https://github.com/user-attachments/assets/f5a207ea-13c9-4fe7-a9c6-fac3b9e8b74c)
+![Screenshot_20250129_100531](https://github.com/user-attachments/assets/4e12c6ba-6543-4418-89d8-7ed400386474) ![Screenshot_20250129_100551](https://github.com/user-attachments/assets/f5a207ea-13c9-4fe7-a9c6-fac3b9e8b74c)
 
 Halaman Update Acara
 ![Screenshot_20250129_100612](https://github.com/user-attachments/assets/7b978be6-1952-4ee8-8b16-c16f60236154)
