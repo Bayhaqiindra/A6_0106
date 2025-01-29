@@ -6,7 +6,6 @@ TABEL ACARA:
 Halaman Utama
 ![AC](https://github.com/user-attachments/assets/f89dba9b-2cdf-4f4b-b4f4-419072568249)
 
-
 Halaman Insert Acara
 ![Screenshot_20250129_100531](https://github.com/user-attachments/assets/4e12c6ba-6543-4418-89d8-7ed400386474) ![Screenshot_20250129_100551](https://github.com/user-attachments/assets/f5a207ea-13c9-4fe7-a9c6-fac3b9e8b74c)
 
@@ -19,6 +18,11 @@ Halaman Detail Acara
 Delete Acara
 ![Screenshot_20250129_100642](https://github.com/user-attachments/assets/3d56df3d-305b-4d04-8d21-fb0b19cf842b)
 ![Screenshot_20250129_100650](https://github.com/user-attachments/assets/16c10b2e-e7df-4522-8d48-7fa6f00ba1c6)
+
+
+
+
+
 
 
 TABEL KLIEN:
@@ -40,6 +44,13 @@ Delete Klien
 ![Screenshot_20250129_101055](https://github.com/user-attachments/assets/2d3994a9-e412-404a-a935-b2525d1797c0)
 ![Screenshot_20250129_101122](https://github.com/user-attachments/assets/af58d275-0068-4a60-9f55-7c34c4332062)
 
+
+
+
+
+
+
+
 TABEL VENDOR:
 
 Halaman Utama Vendor
@@ -58,6 +69,12 @@ Halaman Detail Vendor
 Delete Vendor
 ![Screenshot_20250129_101441](https://github.com/user-attachments/assets/e265580c-bc30-41a4-a8ff-7039f375f247)
 ![Screenshot_20250129_101448](https://github.com/user-attachments/assets/3efab764-ca01-4a9d-9920-e74a24f160a7)
+
+
+
+
+
+
 
 
 TABEL LOKASI:
